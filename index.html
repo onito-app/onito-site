@@ -593,6 +593,28 @@ function hideTyping(type) {
   el.classList.remove('show');
 }
 
+function createMessageElement(message, textContent) {
+  var el = document.createElement('div');
+  el.className = 'msg msg-' + message.type;
+  el.innerHTML = '<div class="msg-text"></div><div class="msg-time">' + message.time + '</div>';
+  el.querySelector('.msg-text').textContent = textContent;
+  return el;
+}
+
+function presetChatBodyHeight(messages) {
+  hideTyping('in');
+  hideTyping('out');
+  chatBody.querySelectorAll('.msg').forEach(function(m) { m.remove(); });
+
+  messages.forEach(function(message) {
+    chatBody.insertBefore(createMessageElement(message, message.text), typingIn);
+  });
+
+  chatBody.style.height = chatBody.scrollHeight + 'px';
+  chatBody.querySelectorAll('.msg').forEach(function(m) { m.remove(); });
+  chatBody.scrollTop = 0;
+}
+
 function typeMessage(msgEl, text, callback, runId) {
   const textContainer = msgEl.querySelector('.msg-text');
   const chars = text.split('');
@@ -645,9 +667,7 @@ function addMessage(runId) {
     if (runId !== animationRun) return;
     hideTyping(m.type);
 
-    var el = document.createElement('div');
-    el.className = 'msg msg-' + m.type;
-    el.innerHTML = '<div class="msg-text"></div><div class="msg-time">' + m.time + '</div>';
+    var el = createMessageElement(m, '');
     chatBody.insertBefore(el, typingIn);
 
     requestAnimationFrame(function() {
@@ -672,14 +692,11 @@ function setVertical(verticalKey) {
   animationRun += 1;
   const runId = animationRun;
   clearTimers();
-  hideTyping('in');
-  hideTyping('out');
-  chatBody.querySelectorAll('.msg').forEach(function(m) { m.remove(); });
-  chatBody.scrollTop = 0;
 
   const scenario = chatScenarios[currentVertical];
   chatAvatar.textContent = scenario.initials;
   chatName.textContent = scenario.name;
+  presetChatBodyHeight(scenario.messages);
 
   const tabs = chatVerticalTabs.querySelectorAll('.chat-vertical-tab');
   tabs.forEach(function(tab) {
