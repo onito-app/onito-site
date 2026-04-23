@@ -182,19 +182,23 @@
     @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
     /* Chat visual */
-    .hero-visual { max-width: 680px; margin: 48px auto 0; background: var(--onito-gray-100); border-radius: 16px; border: 1px solid var(--onito-gray-200); overflow: hidden; opacity: 0; animation: fadeUp 0.8s ease 0.7s forwards; }
+    .chat-vertical-tabs { display: inline-flex; gap: 8px; padding: 6px; border: 1px solid var(--onito-gray-200); border-radius: 999px; background: var(--onito-white); margin-top: 24px; opacity: 0; animation: fadeUp 0.6s ease 0.62s forwards; }
+    .chat-vertical-tab { border: none; background: transparent; color: var(--onito-gray-600); font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: 999px; cursor: pointer; transition: all 0.2s ease; }
+    .chat-vertical-tab:hover { color: var(--onito-text); background: var(--onito-gray-100); }
+    .chat-vertical-tab.active { background: var(--onito-green); color: var(--onito-white); }
+    .hero-visual { max-width: 680px; margin: 20px auto 0; background: var(--onito-gray-100); border-radius: 16px; border: 1px solid var(--onito-gray-200); overflow: hidden; opacity: 0; animation: fadeUp 0.8s ease 0.7s forwards; }
     .chat-header { background: var(--onito-green); padding: 16px 20px; display: flex; align-items: center; gap: 12px; }
     .chat-avatar { width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: white; }
     .chat-name { color: white; font-size: 14px; font-weight: 500; }
     .chat-status { color: rgba(255,255,255,0.7); font-size: 12px; display: flex; align-items: center; gap: 6px; }
     .status-dot { width: 6px; height: 6px; background: var(--onito-green-glow); border-radius: 50%; }
-    .chat-body { padding: 20px; min-height: 280px; display: flex; flex-direction: column; gap: 12px; }
-    .msg { max-width: 80%; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; opacity: 0; transform: translateY(10px) scale(0.97); }
+    .chat-body { padding: 20px; height: 340px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+    .msg { max-width: 80%; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; text-align: left; opacity: 0; transform: translateY(10px) scale(0.97); }
     .msg.visible { animation: msgAppear 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
     @keyframes msgAppear { to { opacity: 1; transform: translateY(0) scale(1); } }
     .msg-in { background: white; border: 1px solid var(--onito-gray-200); align-self: flex-start; border-bottom-left-radius: 4px; }
     .msg-out { background: var(--onito-green-pale); color: var(--onito-dark); align-self: flex-end; border-bottom-right-radius: 4px; }
-    .msg-time { font-size: 11px; color: var(--onito-gray-400); margin-top: 4px; }
+    .msg-time { font-size: 11px; color: var(--onito-gray-400); margin-top: 4px; text-align: right; }
     .msg-text .char { opacity: 0; display: inline; }
     .msg-text .char.visible { animation: charFade 0.03s ease forwards; }
     @keyframes charFade { to { opacity: 1; } }
@@ -280,6 +284,7 @@
       .hero h1 { font-size: 36px; }
       .hero-sub { font-size: 16px; }
       .hero-ctas { flex-direction: column; align-items: center; }
+      .chat-vertical-tabs { display: flex; flex-wrap: wrap; justify-content: center; border-radius: 14px; }
       .hero-visual { margin: 32px auto 0; }
       .msg { max-width: 90%; font-size: 13px; }
       .section { padding: 48px 24px; }
@@ -311,19 +316,25 @@
 
 <section class="hero">
   <div class="hero-badge"><div class="hero-badge-dot"></div> Now available for UK businesses</div>
-  <h1>Your customers get answers.<br><em>Even when you can't.</em></h1>
+  <h1>Your customers get answers.<br><em>Fast. Friendly. 24/7.</em></h1>
   <p class="hero-sub">Onito is an AI assistant that replies to your WhatsApp messages on your behalf &mdash; answering customer questions, capturing leads, and making sure you never miss a job.</p>
   <div class="hero-ctas">
     <button class="btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">Start your free trial &rarr;</button>
     <button class="btn-outline" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works</button>
   </div>
   <p class="hero-proof">Trusted by <strong>plumbers, restaurants, salons</strong> and <strong>trades</strong> across the UK</p>
+  <div class="chat-vertical-tabs" id="chatVerticalTabs" role="tablist" aria-label="Demo business type">
+    <button class="chat-vertical-tab active" type="button" data-vertical="plumber">Plumber</button>
+    <button class="chat-vertical-tab" type="button" data-vertical="restaurant">Restaurant</button>
+    <button class="chat-vertical-tab" type="button" data-vertical="salon">Salon</button>
+    <button class="chat-vertical-tab" type="button" data-vertical="dog-groomer">Dog Groomer</button>
+  </div>
 
   <div class="hero-visual">
     <div class="chat-header">
-      <div class="chat-avatar">DC</div>
+      <div class="chat-avatar" id="chatAvatar">DC</div>
       <div>
-        <div class="chat-name">Davies &amp; Co Plumbing</div>
+        <div class="chat-name" id="chatName">Davies &amp; Co Plumbing</div>
         <div class="chat-status"><div class="status-dot"></div> Powered by Onito</div>
       </div>
     </div>
@@ -498,17 +509,78 @@
 const chatBody = document.getElementById('chatBody');
 const typingIn = document.getElementById('typingIn');
 const typingOut = document.getElementById('typingOut');
+const chatAvatar = document.getElementById('chatAvatar');
+const chatName = document.getElementById('chatName');
+const chatVerticalTabs = document.getElementById('chatVerticalTabs');
 
-const messages = [
-  { type: 'in', text: "Hi, do you cover the Hitchin area? I've got a leaking radiator that needs looking at", time: '14:32' },
-  { type: 'out', text: "Hi! Yes, we cover Hitchin and all surrounding areas within a 15-mile radius. For a leaking radiator, our call-out fee starts at \u00a365 + parts. We can usually get to you within 24 hours. Would you like to book a visit?", time: '14:32' },
-  { type: 'in', text: "That's great, yes please! Are you available tomorrow morning?", time: '14:33' },
-  { type: 'out', text: "Let me check Dave's availability for tomorrow morning and get right back to you. Can I take your postcode so I can confirm the area?", time: '14:33' },
-  { type: 'in', text: "Sure, it's SG4 9AB", time: '14:34' },
-  { type: 'out', text: "Perfect, SG4 is well within our coverage area. I've flagged this to Dave and he'll confirm a morning slot for you shortly. Is there anything else I can help with?", time: '14:34' },
-];
+const chatScenarios = {
+  plumber: {
+    name: 'Davies & Co Plumbing',
+    initials: 'DC',
+    messages: [
+      { type: 'in', text: "Hi, do you cover the Hitchin area? I've got a leaking radiator that needs looking at", time: '14:32' },
+      { type: 'out', text: "Hi! Yes, we cover Hitchin and all surrounding areas within a 15-mile radius. For a leaking radiator, our call-out fee starts at \u00a365 + parts. We can usually get to you within 24 hours. Would you like to book a visit?", time: '14:32' },
+      { type: 'in', text: "That's great, yes please! Are you available tomorrow morning?", time: '14:33' },
+      { type: 'out', text: "Let me check Dave's availability for tomorrow morning and get right back to you. Can I take your postcode so I can confirm the area?", time: '14:33' },
+      { type: 'in', text: "Sure, it's SG4 9AB", time: '14:34' },
+      { type: 'out', text: "Perfect, SG4 is well within our coverage area. I've flagged this to Dave and he'll confirm a morning slot for you shortly. Is there anything else I can help with?", time: '14:34' },
+    ],
+  },
+  restaurant: {
+    name: 'The Oak & Vine',
+    initials: 'OV',
+    messages: [
+      { type: 'in', text: 'Hi, do you have a table for 4 this Saturday evening?', time: '18:15' },
+      { type: 'out', text: 'Hi! Yes, we have availability this Saturday. We can offer 6:30pm or 8:00pm - which would you prefer?', time: '18:15' },
+      { type: 'in', text: '8pm please! Also, my partner is gluten-free - do you cater for that?', time: '18:16' },
+      { type: 'out', text: "Absolutely - we have a dedicated gluten-free menu with 8 main courses to choose from. I'll book you in for 8pm, Saturday, table for 4. Can I take a name for the reservation?", time: '18:16' },
+      { type: 'in', text: "Great, it's under Thompson", time: '18:17' },
+      { type: 'out', text: "All booked in, Thompson, party of 4, Saturday at 8pm. We'll text you a reminder the day before. Looking forward to seeing you!", time: '18:17' },
+    ],
+  },
+  salon: {
+    name: "Bella's Hair Studio",
+    initials: 'BH',
+    messages: [
+      { type: 'in', text: 'Hiya, how much for a cut and colour?', time: '10:05' },
+      { type: 'out', text: 'Hi! Our cut and colour packages start from \u00a385 for short hair and \u00a3120 for long hair. That includes a consultation, wash, cut, and full colour. Would you like to book in?', time: '10:05' },
+      { type: 'in', text: "That sounds good, I've got shoulder-length hair. Any availability this week?", time: '10:06' },
+      { type: 'out', text: "For shoulder-length, that would be \u00a395. We've got openings on Thursday at 2pm or Friday at 10am - would either work for you?", time: '10:06' },
+      { type: 'in', text: 'Thursday at 2 is perfect!', time: '10:07' },
+      { type: 'out', text: "Lovely, you're booked in for Thursday at 2pm. Can I take your name? And feel free to bring along any photos of styles you like!", time: '10:07' },
+    ],
+  },
+  'dog-groomer': {
+    name: 'Paws & Bubbles',
+    initials: 'PB',
+    messages: [
+      { type: 'in', text: "Hi! Do you groom cockapoos? Mine's quite matted", time: '09:20' },
+      { type: 'out', text: "Hi! Yes, we love cockapoos - they're one of our most popular breeds! For a matted coat, we'd recommend our Full Groom package at \u00a345 which includes a de-matt, bath, blow-dry, and trim. How big is your cockapoo?", time: '09:20' },
+      { type: 'in', text: "He's medium sized, about 12kg. Is there anything available this week?", time: '09:21' },
+      { type: 'out', text: "Perfect size! We've got a slot on Wednesday at 11am or Thursday at 3pm. The full groom usually takes about 90 minutes for a medium cockapoo. Which day suits you better?", time: '09:21' },
+      { type: 'in', text: "Wednesday please! His name's Biscuit \uD83D\uDC36", time: '09:22' },
+      { type: 'out', text: "Biscuit is booked in for Wednesday at 11am! Please make sure he's had a walk beforehand so he's nice and relaxed. See you and Biscuit then!", time: '09:22' },
+    ],
+  },
+};
 
+let currentVertical = 'plumber';
 let msgIndex = 0;
+let activeTimers = [];
+let animationRun = 0;
+
+function schedule(fn, delay) {
+  const timeoutId = setTimeout(function() {
+    activeTimers = activeTimers.filter(function(id) { return id !== timeoutId; });
+    fn();
+  }, delay);
+  activeTimers.push(timeoutId);
+}
+
+function clearTimers() {
+  activeTimers.forEach(function(id) { clearTimeout(id); });
+  activeTimers = [];
+}
 
 function showTyping(type) {
   const el = type === 'in' ? typingIn : typingOut;
@@ -521,7 +593,7 @@ function hideTyping(type) {
   el.classList.remove('show');
 }
 
-function typeMessage(msgEl, text, callback) {
+function typeMessage(msgEl, text, callback, runId) {
   const textContainer = msgEl.querySelector('.msg-text');
   const chars = text.split('');
   textContainer.innerHTML = chars.map(function(c) {
@@ -530,6 +602,7 @@ function typeMessage(msgEl, text, callback) {
   const spans = textContainer.querySelectorAll('.char');
   let i = 0;
   function typeNext() {
+    if (runId !== animationRun) return;
     if (i < spans.length) {
       spans[i].classList.add('visible');
       i++;
@@ -541,18 +614,23 @@ function typeMessage(msgEl, text, callback) {
   typeNext();
 }
 
-function addMessage() {
+function addMessage(runId) {
+  if (runId !== animationRun) return;
+  const messages = chatScenarios[currentVertical].messages;
+
   if (msgIndex >= messages.length) {
-    setTimeout(function() {
+    schedule(function() {
+      if (runId !== animationRun) return;
       var allMsgs = chatBody.querySelectorAll('.msg');
       allMsgs.forEach(function(m) {
         m.style.transition = 'opacity 0.5s ease';
         m.style.opacity = '0';
       });
-      setTimeout(function() {
+      schedule(function() {
+        if (runId !== animationRun) return;
         allMsgs.forEach(function(m) { m.remove(); });
         msgIndex = 0;
-        addMessage();
+        addMessage(runId);
       }, 600);
     }, 4000);
     return;
@@ -563,7 +641,8 @@ function addMessage() {
 
   showTyping(m.type);
 
-  setTimeout(function() {
+  schedule(function() {
+    if (runId !== animationRun) return;
     hideTyping(m.type);
 
     var el = document.createElement('div');
@@ -572,19 +651,51 @@ function addMessage() {
     chatBody.insertBefore(el, typingIn);
 
     requestAnimationFrame(function() {
+      if (runId !== animationRun) return;
       el.classList.add('visible');
       typeMessage(el, m.text, function() {
+        if (runId !== animationRun) return;
         msgIndex++;
         var nextDelay = m.type === 'in' ? 600 : 1500;
-        setTimeout(addMessage, nextDelay);
-      });
+        schedule(function() { addMessage(runId); }, nextDelay);
+      }, runId);
     });
 
     chatBody.scrollTop = chatBody.scrollHeight;
   }, typingDelay);
 }
 
-setTimeout(addMessage, 1800);
+function setVertical(verticalKey) {
+  if (!chatScenarios[verticalKey]) return;
+  currentVertical = verticalKey;
+  msgIndex = 0;
+  animationRun += 1;
+  const runId = animationRun;
+  clearTimers();
+  hideTyping('in');
+  hideTyping('out');
+  chatBody.querySelectorAll('.msg').forEach(function(m) { m.remove(); });
+  chatBody.scrollTop = 0;
+
+  const scenario = chatScenarios[currentVertical];
+  chatAvatar.textContent = scenario.initials;
+  chatName.textContent = scenario.name;
+
+  const tabs = chatVerticalTabs.querySelectorAll('.chat-vertical-tab');
+  tabs.forEach(function(tab) {
+    tab.classList.toggle('active', tab.dataset.vertical === verticalKey);
+  });
+
+  schedule(function() { addMessage(runId); }, 500);
+}
+
+chatVerticalTabs.addEventListener('click', function(event) {
+  const tab = event.target.closest('.chat-vertical-tab');
+  if (!tab || tab.dataset.vertical === currentVertical) return;
+  setVertical(tab.dataset.vertical);
+});
+
+setVertical('plumber');
 </script>
 
 </body>
