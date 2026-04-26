@@ -164,6 +164,9 @@
     .nav-links a:hover { color: var(--onito-text); }
     .btn-primary { background: var(--onito-green); color: white; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: background 0.2s; }
     .btn-primary:hover { background: var(--onito-green-light); color: white; }
+    .nav-links a.nav-get-started,
+    .nav-links a.nav-get-started:hover,
+    .nav-links a.nav-get-started:visited { color: #ffffff !important; }
     .btn-outline { background: transparent; color: var(--onito-text); padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none; border: 1px solid var(--onito-gray-200); cursor: pointer; transition: all 0.2s; }
     .btn-outline:hover { border-color: var(--onito-gray-400); }
     .nav-mobile { display: none; background: none; border: none; cursor: pointer; }
@@ -307,7 +310,7 @@
     <a href="#pricing">Pricing</a>
     <a href="#faq">FAQ</a>
     <a href="https://console.onito.co.uk/login">Log in</a>
-    <a class="btn-primary" href="https://console.onito.co.uk/signup">Get started</a>
+    <a class="btn-primary nav-get-started" href="https://console.onito.co.uk/signup">Get started</a>
   </div>
   <button class="nav-mobile" aria-label="Menu" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">
     <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
