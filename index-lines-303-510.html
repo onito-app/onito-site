@@ -1,0 +1,208 @@
+﻿<body>
+
+<nav class="nav">
+  <a href="#" class="nav-logo">onito<span>.</span></a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://console.onito.co.uk/login">Log in</a>
+    <a class="btn-primary nav-get-started" href="https://console.onito.co.uk/signup">Get started</a>
+  </div>
+  <button class="nav-mobile" aria-label="Menu" onclick="document.querySelector('.nav-links').style.display=document.querySelector('.nav-links').style.display==='flex'?'none':'flex'">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  </button>
+</nav>
+
+<section class="hero">
+  <h1>The AI your customers <em>talk to.</em></h1>
+  <p class="hero-sub">Onito researches your business, builds a knowledge base, and answers your customers' questions 24/7 &mdash; via WhatsApp, chat widget, or voice. Set up in under 2 minutes.</p>
+  <div class="hero-ctas">
+    <a class="btn-primary" href="https://console.onito.co.uk/signup">Get started free &rarr;</a>
+    <button class="btn-outline" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works</button>
+  </div>
+  <p class="hero-proof">Built for <strong>plumbers, electricians, salons, restaurants</strong> and every UK service business</p>
+  <div class="chat-vertical-tabs" id="chatVerticalTabs" role="tablist" aria-label="Demo business type">
+    <button class="chat-vertical-tab active" type="button" data-vertical="plumber">Plumber</button>
+    <button class="chat-vertical-tab" type="button" data-vertical="restaurant">Restaurant</button>
+    <button class="chat-vertical-tab" type="button" data-vertical="salon">Salon</button>
+    <button class="chat-vertical-tab" type="button" data-vertical="electrician">Electrician</button>
+    <button class="chat-vertical-tab" type="button" data-vertical="joiner">Joiner</button>
+  </div>
+
+  <div class="hero-visual">
+    <div class="chat-header">
+      <div class="chat-avatar" id="chatAvatar">DC</div>
+      <div>
+        <div class="chat-name" id="chatName">Davies &amp; Co Plumbing</div>
+        <div class="chat-status"><div class="status-dot"></div> Powered by Onito</div>
+      </div>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="typing-indicator is-in" id="typingIn">
+        <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
+      </div>
+      <div class="typing-indicator" id="typingOut">
+        <div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="section-label">Features</div>
+  <div class="section-title">Everything your business<br>needs to stay responsive</div>
+  <div class="section-desc">You're busy doing the work. Onito handles the conversations.</div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3>Instant WhatsApp replies</h3>
+      <p>Customers message your number and get accurate, helpful answers in seconds &mdash; even at 2am or while you're under a boiler.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3>Your knowledge, your voice</h3>
+      <p>Onito learns your prices, services, areas, and policies. It answers as you would &mdash; never invents information or makes things up.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M13.73 21a2 2 0 01-3.46 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3>Smart lead alerts</h3>
+      <p>When a customer asks something the AI can't answer, you get a WhatsApp notification with a summary. No lead slips through.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3>Easy onboarding</h3>
+      <p>Answer 30 common questions about your business, or let us pre-fill them from your website. Go live in under 20 minutes.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M12 20V10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 20V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 20v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3>Dashboard &amp; insights</h3>
+      <p>See every conversation, review enquiries, and track what customers ask most. Your AI gets smarter as you use it.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 00-3-3.87" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h3>No app for customers</h3>
+      <p>Your customers don't install anything. They just message your WhatsApp number like they already do. Zero friction.</p>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="steps-bg">
+    <div class="section-label">How it works</div>
+    <div class="section-title">Live in three steps</div>
+    <div class="section-desc">No technical skills needed. If you can fill in a form, you can set up Onito.</div>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Tell us about your business</h3>
+        <p>Answer questions about your services, prices, areas you cover, and how you work. We'll pre-fill what we can from your website.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Connect your WhatsApp</h3>
+        <p>We set up a business WhatsApp number for you. Your existing number stays yours &mdash; customers message the new one.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Go live</h3>
+        <p>That's it. Customers message, Onito answers. You get notified when a real lead comes in. Review everything in your dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">Verticals</div>
+  <div class="section-title">Built for businesses like yours</div>
+  <div class="section-desc">One platform, any service business. Onito works across industries with templates tailored to your trade.</div>
+  <div class="verticals-wrap">
+    <div class="v-tag">Plumbers &amp; gas engineers</div>
+    <div class="v-tag">Electricians</div>
+    <div class="v-tag">Restaurants &amp; cafes</div>
+    <div class="v-tag">Pubs &amp; bars</div>
+    <div class="v-tag">Hair &amp; beauty salons</div>
+    <div class="v-tag">Dog groomers</div>
+    <div class="v-tag">Carpenters &amp; joiners</div>
+    <div class="v-tag">Window fitters</div>
+    <div class="v-tag">Personal trainers</div>
+    <div class="v-tag">Cleaners</div>
+  </div>
+</section>
+
+<section class="section" id="pricing" style="text-align: center;">
+  <div class="section-label">Pricing</div>
+  <div class="section-title">Simple pricing. No surprises.</div>
+  <div class="section-desc" style="margin-left: auto; margin-right: auto;">One plan. Everything included. Cancel anytime.</div>
+  <div class="pricing-card">
+    <div class="pricing-header">
+      <h3>Onito Pro</h3>
+      <div class="price">Free</div>
+      <div class="price-sub">Early access &mdash; free while in beta</div>
+    </div>
+    <div class="pricing-body">
+      <div class="pricing-feature"><span class="pricing-check">&#10003;</span> Unlimited WhatsApp conversations</div>
+      <div class="pricing-feature"><span class="pricing-check">&#10003;</span> AI trained on your business knowledge</div>
+      <div class="pricing-feature"><span class="pricing-check">&#10003;</span> Instant lead notifications to your phone</div>
+      <div class="pricing-feature"><span class="pricing-check">&#10003;</span> Owner dashboard with full conversation history</div>
+      <div class="pricing-feature"><span class="pricing-check">&#10003;</span> Website enrichment &mdash; we pre-fill your info</div>
+      <div class="pricing-feature"><span class="pricing-check">&#10003;</span> 24/7 availability &mdash; never miss a message</div>
+      <div class="pricing-feature"><span class="pricing-check">&#10003;</span> Gets smarter the more you use it</div>
+    </div>
+    <div class="pricing-cta">
+      <a class="btn-primary" href="https://console.onito.co.uk/signup">Get started free</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div style="text-align: center;">
+    <div class="section-label">FAQ</div>
+    <div class="section-title">Common questions</div>
+  </div>
+  <div class="faq-section" style="margin-top: 36px;">
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Do my customers need to install anything? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">No. Customers just message your WhatsApp number as normal. They won't even know they're talking to an AI unless you tell them.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">What if the AI gets something wrong? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">Onito only answers from the knowledge you provide. If it's not sure, it tells the customer it'll check and notifies you instead. You can review every conversation in your dashboard.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">How long does setup take? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">Under 2 minutes. Just enter your business name and we'll research your business automatically &mdash; pulling from Google, your website, review sites, and more. You'll have a working AI assistant before you finish your cuppa.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Can I see what the AI is saying to my customers? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">Absolutely. Every conversation is visible in your dashboard in real time. You can also add or update your knowledge base at any time to improve the AI's answers.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">What happens if I cancel? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">You can cancel anytime with no penalty. Your WhatsApp number and all your data remain yours.</div>
+    </div>
+    <div class="faq-item" onclick="this.classList.toggle('open')">
+      <div class="faq-q">Do you handle phone calls too? <span class="faq-arrow">&#9660;</span></div>
+      <div class="faq-a">Not yet &mdash; Onito is WhatsApp-only at launch. Voice call handling is on our roadmap and coming soon.</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-banner">
+    <h2>Ready to stop missing customers?</h2>
+    <p>Set up your AI assistant in under 2 minutes. Free during early access.</p>
+    <a class="btn-white" href="https://console.onito.co.uk/signup">Get started free</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-left">&copy; 2026 Onito Ltd. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
