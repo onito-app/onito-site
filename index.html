@@ -329,7 +329,8 @@
     <button class="chat-vertical-tab active" type="button" data-vertical="plumber">Plumber</button>
     <button class="chat-vertical-tab" type="button" data-vertical="restaurant">Restaurant</button>
     <button class="chat-vertical-tab" type="button" data-vertical="salon">Salon</button>
-    <button class="chat-vertical-tab" type="button" data-vertical="dog-groomer">Dog Groomer</button>
+    <button class="chat-vertical-tab" type="button" data-vertical="electrician">Electrician</button>
+    <button class="chat-vertical-tab" type="button" data-vertical="joiner">Joiner</button>
   </div>
 
   <div class="hero-visual">
@@ -521,23 +522,19 @@ const chatScenarios = {
     initials: 'DC',
     messages: [
       { type: 'in', text: "Hi, do you cover the Hitchin area? I've got a leaking radiator that needs looking at", time: '14:32' },
-      { type: 'out', text: "Hi! Yes, we cover Hitchin and all surrounding areas within a 15-mile radius. For a leaking radiator, our call-out fee starts at \u00a365 + parts. We can usually get to you within 24 hours. Would you like to book a visit?", time: '14:32' },
-      { type: 'in', text: "That's great, yes please! Are you available tomorrow morning?", time: '14:33' },
-      { type: 'out', text: "Let me check Dave's availability for tomorrow morning and get right back to you. Can I take your postcode so I can confirm the area?", time: '14:33' },
-      { type: 'in', text: "Sure, it's SG4 9AB", time: '14:34' },
-      { type: 'out', text: "Perfect, SG4 is well within our coverage area. I've flagged this to Dave and he'll confirm a morning slot for you shortly. Is there anything else I can help with?", time: '14:34' },
+      { type: 'out', text: "Hi! Yes, we cover Hitchin and all surrounding areas within a 15-mile radius. For a leaking radiator, we'd recommend booking a call-out — there's no call-out charge and our first-hour diagnosis starts from £89 + VAT.", time: '14:32' },
+      { type: 'in', text: "That's reasonable. Are you Gas Safe registered?", time: '14:33' },
+      { type: 'out', text: "Yes, we're fully Gas Safe registered. All our engineers are qualified and insured. Would you like me to pass your details to the team so they can arrange a visit?", time: '14:33' },
     ],
   },
   restaurant: {
     name: 'The Oak & Vine',
     initials: 'OV',
     messages: [
-      { type: 'in', text: 'Hi, do you have a table for 4 this Saturday evening?', time: '18:15' },
-      { type: 'out', text: 'Hi! Yes, we have availability this Saturday. We can offer 6:30pm or 8:00pm - which would you prefer?', time: '18:15' },
-      { type: 'in', text: '8pm please! Also, my partner is gluten-free - do you cater for that?', time: '18:16' },
-      { type: 'out', text: "Absolutely - we have a dedicated gluten-free menu with 8 main courses to choose from. I'll book you in for 8pm, Saturday, table for 4. Can I take a name for the reservation?", time: '18:16' },
-      { type: 'in', text: "Great, it's under Thompson", time: '18:17' },
-      { type: 'out', text: "All booked in, Thompson, party of 4, Saturday at 8pm. We'll text you a reminder the day before. Looking forward to seeing you!", time: '18:17' },
+      { type: 'in', text: 'Hi, do you cater for gluten-free diets?', time: '18:15' },
+      { type: 'out', text: "Hi! Yes, we have a dedicated gluten-free menu with 8 main courses to choose from. Our kitchen takes cross-contamination very seriously and we're happy to discuss any specific allergies when you visit.", time: '18:15' },
+      { type: 'in', text: 'Great, what are your opening hours on Saturday?', time: '18:16' },
+      { type: 'out', text: "We're open Saturday from 12pm to 10pm, with last orders for food at 9:15pm. Would you like our phone number to book a table?", time: '18:16' },
     ],
   },
   salon: {
@@ -545,23 +542,29 @@ const chatScenarios = {
     initials: 'BH',
     messages: [
       { type: 'in', text: 'Hiya, how much for a cut and colour?', time: '10:05' },
-      { type: 'out', text: 'Hi! Our cut and colour packages start from \u00a385 for short hair and \u00a3120 for long hair. That includes a consultation, wash, cut, and full colour. Would you like to book in?', time: '10:05' },
-      { type: 'in', text: "That sounds good, I've got shoulder-length hair. Any availability this week?", time: '10:06' },
-      { type: 'out', text: "For shoulder-length, that would be \u00a395. We've got openings on Thursday at 2pm or Friday at 10am - would either work for you?", time: '10:06' },
-      { type: 'in', text: 'Thursday at 2 is perfect!', time: '10:07' },
-      { type: 'out', text: "Lovely, you're booked in for Thursday at 2pm. Can I take your name? And feel free to bring along any photos of styles you like!", time: '10:07' },
+      { type: 'out', text: "Hi! Our cut and colour packages start from £85 for short hair and £120 for long hair. That includes a consultation, wash, cut, and full colour.", time: '10:05' },
+      { type: 'in', text: "Do you do balayage?", time: '10:06' },
+      { type: 'out', text: "Yes! Balayage starts from £130 and includes a consultation to get the blend just right. It's one of our most popular services. Would you like me to check with the team about availability?", time: '10:06' },
     ],
   },
-  'dog-groomer': {
-    name: 'Paws & Bubbles',
-    initials: 'PB',
+  electrician: {
+    name: 'Spark Right Electrical',
+    initials: 'SR',
     messages: [
-      { type: 'in', text: "Hi! Do you groom cockapoos? Mine's quite matted", time: '09:20' },
-      { type: 'out', text: "Hi! Yes, we love cockapoos - they're one of our most popular breeds! For a matted coat, we'd recommend our Full Groom package at \u00a345 which includes a de-matt, bath, blow-dry, and trim. How big is your cockapoo?", time: '09:20' },
-      { type: 'in', text: "He's medium sized, about 12kg. Is there anything available this week?", time: '09:21' },
-      { type: 'out', text: "Perfect size! We've got a slot on Wednesday at 11am or Thursday at 3pm. The full groom usually takes about 90 minutes for a medium cockapoo. Which day suits you better?", time: '09:21' },
-      { type: 'in', text: "Wednesday please! His name's Biscuit \uD83D\uDC36", time: '09:22' },
-      { type: 'out', text: "Biscuit is booked in for Wednesday at 11am! Please make sure he's had a walk beforehand so he's nice and relaxed. See you and Biscuit then!", time: '09:22' },
+      { type: 'in', text: 'Hi, do you install EV chargers?', time: '11:40' },
+      { type: 'out', text: "Hi! Yes, we install EV chargers for both domestic and commercial properties. We're OZEV-approved, so you may be eligible for the government grant which covers up to £350 off the installation cost.", time: '11:40' },
+      { type: 'in', text: 'How much does a typical home installation cost?', time: '11:41' },
+      { type: 'out', text: "A standard home installation typically costs between £800 and £1,200 depending on the charger model and cable routing. We offer free no-obligation quotes — shall I pass your details to the team?", time: '11:41' },
+    ],
+  },
+  joiner: {
+    name: 'Hartley Joinery',
+    initials: 'HJ',
+    messages: [
+      { type: 'in', text: 'Hi, do you make bespoke fitted wardrobes?', time: '09:15' },
+      { type: 'out', text: "Hello! Yes, bespoke fitted wardrobes are one of our specialities. We design and build everything in our workshop and install on-site. All our work is made to measure.", time: '09:15' },
+      { type: 'in', text: 'Lovely, how long does it usually take from design to fitting?', time: '09:16' },
+      { type: 'out', text: "Typically 4-6 weeks from the initial measure-up to fitting, depending on the complexity. We'd start with a free home visit to discuss what you're after. Would you like me to get one of the team to get in touch?", time: '09:16' },
     ],
   },
 };
