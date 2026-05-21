@@ -277,6 +277,9 @@
     .footer-links { display: flex; gap: 24px; }
     .footer-links a { font-size: 13px; color: var(--onito-gray-400); text-decoration: none; }
     .footer-links a:hover { color: var(--onito-gray-600); }
+    .footer-legal { text-align: center; padding: 28px 48px 36px; font-size: 12px; color: var(--onito-gray-400); line-height: 1.7; border-top: 1px solid var(--onito-gray-200); }
+    .footer-legal p { margin: 0; }
+    .footer-legal p + p { margin-top: 4px; }
 
     /* Mobile */
     @media (max-width: 768px) {
@@ -298,6 +301,7 @@
       .cta-banner { margin: 0 24px 48px; padding: 40px 24px; }
       .cta-banner h2 { font-size: 28px; }
       .footer { flex-direction: column; gap: 16px; padding: 32px 24px; text-align: center; }
+      .footer-legal { padding: 24px 24px 32px; }
     }
   </style>
 </head>
@@ -503,9 +507,9 @@
 <footer class="footer">
   <div class="footer-left">&copy; 2026 Onito Ltd. All rights reserved.</div>
   <div class="footer-links">
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">Contact</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="mailto:chris@onito.co.uk">Contact</a>
   </div>
 </footer>
 
@@ -720,6 +724,11 @@ chatVerticalTabs.addEventListener('click', function(event) {
 
 setVertical('plumber');
 </script>
+
+<footer class="footer-legal">
+  <p>Onito Ltd | 15 Morello Way, Hitchin, SG5 3FT | United Kingdom</p>
+  <p>Company Registration Number: 17208835</p>
+</footer>
 
 </body>
 </html>
